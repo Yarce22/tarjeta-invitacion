@@ -1,0 +1,516 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Invitación Valentina y Santiago</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: sobre centrado sobre fondo verde cafetero → al abrir, una sola columna de papel con secciones apiladas.
+   Diseño de un solo tema a propósito (papelería impresa): todos los colores son explícitos. */
+:root{
+  --monte:#1d3b33;      /* verde montaña, fondo */
+  --monte-2:#264a40;
+  --papel:#f6f3ec;      /* papel de algodón */
+  --papel-2:#e9e3d6;    /* sobre */
+  --tinta:#22302b;      /* texto */
+  --tinta-suave:#5d6a63;
+  --laton:#a8875a;      /* filetes y detalles */
+  --lacre:#7b2633;      /* sello de lacre */
+  --f-display:"Bodoni Moda", "Didot", Georgia, serif;
+  --f-script:"Pinyon Script", "Snell Roundhand", cursive;
+  --f-body:"Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  background:var(--monte);
+  background-image:
+    radial-gradient(1200px 700px at 50% -10%, var(--monte-2), transparent 70%),
+    radial-gradient(900px 600px at 100% 110%, #18322b, transparent 70%);
+  color:var(--tinta);
+  font-family:var(--f-body);
+  font-weight:300;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--laton);outline-offset:3px}
+
+/* ---------- Escena del sobre ---------- */
+.escena{
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  padding-block:48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  transition:opacity .7s ease, transform .7s ease;
+}
+.escena.saliendo{opacity:0;transform:scale(.97)}
+.escena-titulo{
+  font-family:var(--f-body);font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+  color:#cdbb98;text-align:center;
+}
+.sobre{
+  position:relative;
+  width:min(92vw, 520px);
+  aspect-ratio:3/2;
+  perspective:1400px;
+  margin-top:60px;
+}
+.sobre > *{position:absolute}
+.sobre-fondo{inset:0;background:#d9d1bf;border-radius:6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55)}
+.carta{
+  left:5%;right:5%;top:6%;bottom:6%;
+  background:var(--papel);border-radius:3px;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:9%;gap:4px;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+  transition:transform 1s cubic-bezier(.2,.7,.2,1);
+  z-index:2;
+}
+.carta small{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--tinta-suave)}
+.carta .mini{font-family:var(--f-script);font-size:clamp(28px,7vw,40px);color:var(--tinta);line-height:1.1}
+.carta .filete{width:40px;height:1px;background:var(--laton)}
+.bolsillo{
+  inset:0;z-index:3;border-radius:6px;
+  background:linear-gradient(180deg, var(--papel-2), #e2dbcb);
+  clip-path:polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:0 8% 7%;text-align:center;
+}
+.bolsillo .para{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--tinta-suave)}
+.bolsillo .destinatario{
+  font-family:var(--f-script);color:var(--tinta);
+  font-size:clamp(24px,6.2vw,36px);line-height:1.15;text-wrap:balance;
+}
+.solapa{
+  left:0;right:0;top:0;height:62%;z-index:4;
+  background:linear-gradient(180deg, #e6dfcf, #d6cdb9);
+  clip-path:polygon(0 0, 100% 0, 50% 100%);
+  transform-origin:top center;
+  transition:transform .75s cubic-bezier(.5,0,.3,1);
+  filter:drop-shadow(0 2px 2px rgba(0,0,0,.15));
+}
+.sello{
+  z-index:5;left:50%;top:62%;
+  width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;border:0;cursor:pointer;
+  background:radial-gradient(circle at 35% 30%, #a23a49, var(--lacre) 55%, #5b1a25);
+  box-shadow:0 4px 10px rgba(0,0,0,.35), inset 0 0 0 5px rgba(0,0,0,.12);
+  color:#f3dcc4;font-family:var(--f-display);font-style:italic;font-size:22px;letter-spacing:.02em;
+  transition:transform .35s ease, opacity .35s ease;
+}
+.sello:hover{transform:scale(1.06)}
+.abrir-nota{color:#cdbb98;font-size:14px;letter-spacing:.06em;text-align:center;transition:opacity .3s}
+
+.sobre.abriendo .sello{transform:scale(.4);opacity:0;pointer-events:none}
+.sobre.abriendo .solapa{transform:rotateX(180deg)}
+.sobre.solapa-atras .solapa{z-index:1}
+.sobre.sacando .carta{transform:translateY(-62%)}
+.escena.abierta .abrir-nota{opacity:0}
+
+/* ---------- Invitación ---------- */
+.invitacion{
+  padding-block:40px 64px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  animation:aparecer .9s ease both;
+}
+@keyframes aparecer{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hoja{
+  max-width:720px;margin:0 auto;background:var(--papel);border-radius:4px;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.6);
+  padding:clamp(28px,6vw,72px) clamp(20px,6vw,72px);
+  display:flex;flex-direction:column;gap:clamp(48px,8vw,72px);
+  position:relative;
+}
+.hoja::before{content:"";position:absolute;inset:12px;border:1px solid rgba(168,135,90,.45);pointer-events:none;border-radius:2px}
+.etiqueta{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--laton);font-weight:500}
+h2{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,4.6vw,34px);line-height:1.15;margin:6px 0 0;text-wrap:balance}
+p{margin:0}
+section{display:flex;flex-direction:column;gap:18px}
+.centro{align-items:center;text-align:center}
+
+/* Portada */
+.portada{align-items:center;text-align:center;gap:14px;padding-top:12px}
+.portada .intro{max-width:34ch;color:var(--tinta-suave)}
+.nombres{
+  font-family:var(--f-script);font-weight:400;font-size:clamp(54px,13vw,96px);line-height:1;margin:6px 0;
+  display:flex;flex-direction:column;align-items:center;
+}
+.nombres .y{font-family:var(--f-display);font-style:italic;font-size:.34em;color:var(--laton);margin:4px 0}
+.fecha-grande{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;
+  font-family:var(--f-display);margin-top:10px;width:min(100%,420px);
+}
+.fecha-grande .lado{border-top:1px solid var(--laton);border-bottom:1px solid var(--laton);padding:8px 0;font-size:13px;letter-spacing:.24em;text-transform:uppercase;font-family:var(--f-body);font-weight:400}
+.fecha-grande .dia{font-size:64px;line-height:1}
+.anio{font-family:var(--f-display);letter-spacing:.3em;font-size:15px}
+.cuenta{display:flex;gap:22px;justify-content:center;margin-top:8px;font-variant-numeric:tabular-nums}
+.cuenta div{display:flex;flex-direction:column;align-items:center;min-width:52px}
+.cuenta b{font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.1}
+.cuenta span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--tinta-suave)}
+
+.separador{display:flex;align-items:center;gap:14px;justify-content:center;color:var(--laton)}
+.separador::before,.separador::after{content:"";height:1px;width:64px;background:currentColor;opacity:.6}
+
+/* Lugar */
+.lugar{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.lugar > div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.lugar h3{font-family:var(--f-display);font-weight:400;font-size:22px;margin:0}
+.lugar .hora{font-family:var(--f-display);font-style:italic;color:var(--laton);font-size:18px}
+.acciones{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.btn-linea{
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--tinta);
+  border:1px solid var(--tinta);border-radius:999px;padding:10px 18px;font-size:14px;letter-spacing:.04em;
+  transition:background .2s,color .2s;
+}
+.btn-linea:hover{background:var(--tinta);color:var(--papel)}
+
+/* Itinerario */
+.itinerario{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.itinerario li{
+  display:grid;grid-template-columns:92px 18px 1fr;gap:14px;align-items:start;padding-bottom:22px;position:relative;
+}
+.itinerario li:last-child{padding-bottom:0}
+.itinerario .h{font-family:var(--f-display);font-size:19px;text-align:right;font-variant-numeric:tabular-nums;line-height:1.4}
+.itinerario .punto{width:9px;height:9px;border-radius:50%;background:var(--laton);margin:8px auto 0;position:relative;z-index:1}
+.itinerario li:not(:last-child)::after{content:"";position:absolute;left:calc(92px + 14px + 9px);top:20px;bottom:0;width:1px;background:rgba(168,135,90,.5)}
+.itinerario b{font-weight:500;display:block}
+.itinerario small{color:var(--tinta-suave);font-size:15px}
+
+/* Vestimenta */
+.vestimenta{display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+.vestimenta .tipo{font-family:var(--f-display);font-style:italic;font-size:26px}
+.paleta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.paleta span{width:34px;height:34px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.nota-suave{font-size:15px;color:var(--tinta-suave);max-width:46ch}
+
+/* RSVP */
+.rsvp{background:#efeae0;border-radius:4px;padding:clamp(22px,5vw,40px);gap:20px}
+.reserva{
+  font-family:var(--f-display);font-size:19px;line-height:1.5;text-align:center;max-width:44ch;margin:0 auto;
+}
+.reserva strong{font-weight:500}
+.lista-invitados{display:flex;flex-direction:column;gap:10px}
+.fila{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  background:var(--papel);border:1px solid #ddd5c5;border-radius:6px;padding:12px 14px;
+}
+.fila .nombre{font-weight:400;min-width:0}
+.opcion{display:inline-flex;border:1px solid #cfc5b2;border-radius:999px;padding:3px;background:#f1ece2}
+.opcion button{border:0;background:transparent;border-radius:999px;padding:7px 14px;font-size:14px;cursor:pointer;color:var(--tinta-suave)}
+.opcion button[aria-pressed="true"]{background:var(--monte);color:var(--papel)}
+.opcion button.no[aria-pressed="true"]{background:var(--lacre)}
+label.campo{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--tinta-suave)}
+textarea{
+  font:inherit;font-size:16px;color:var(--tinta);background:var(--papel);
+  border:1px solid #d4cab7;border-radius:6px;padding:10px 12px;min-height:84px;resize:vertical;
+}
+.btn-wpp{
+  display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;
+  background:var(--monte);color:var(--papel);border-radius:999px;padding:16px 22px;font-size:16px;font-weight:400;letter-spacing:.03em;
+  transition:background .2s, transform .2s;
+}
+.btn-wpp:hover{background:#15302a;transform:translateY(-1px)}
+.btn-wpp svg{width:20px;height:20px;flex:none}
+.resumen{font-size:14px;color:var(--tinta-suave);text-align:center}
+.contacto{font-size:14px;color:var(--tinta-suave);text-align:center;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.contacto code{font-family:var(--f-body);color:var(--tinta);font-weight:400;user-select:all}
+.copiar{border:1px solid #cfc5b2;background:transparent;border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer}
+
+.cierre{text-align:center;align-items:center;gap:8px}
+.cierre .firma{font-family:var(--f-script);font-size:44px;line-height:1}
+
+@media (max-width:480px){
+  .itinerario li{grid-template-columns:70px 14px 1fr;gap:10px}
+  .itinerario li:not(:last-child)::after{left:calc(70px + 10px + 7px)}
+  .fecha-grande .dia{font-size:52px}
+  .cuenta{gap:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
+
+<!-- ===================== ESCENA: SOBRE ===================== -->
+<div class="escena" id="escena">
+  <p class="escena-titulo">Tienes una invitación</p>
+  <div class="sobre" id="sobre">
+    <div class="sobre-fondo"></div>
+    <div class="carta" aria-hidden="true">
+      <small>Nos casamos</small>
+      <span class="mini" id="cartaNombres">V &amp; S</span>
+      <span class="filete"></span>
+    </div>
+    <div class="bolsillo">
+      <span class="para">Para</span>
+      <span class="destinatario" id="destinatario"></span>
+    </div>
+    <div class="solapa" aria-hidden="true"></div>
+    <button class="sello" id="sello" aria-label="Abrir la invitación"><span id="iniciales">V·S</span></button>
+  </div>
+  <p class="abrir-nota">Toca el sello para abrir</p>
+</div>
+
+<!-- ===================== INVITACIÓN ===================== -->
+<main class="invitacion" id="invitacion" hidden>
+  <article class="hoja">
+
+    <section class="portada" aria-labelledby="tNombres">
+      <span class="etiqueta">Junto a nuestras familias</span>
+      <h1 class="nombres" id="tNombres"><span id="novia"></span><span class="y">y</span><span id="novio"></span></h1>
+      <p class="intro">tenemos la alegría de invitarte a celebrar el día en que uniremos nuestras vidas.</p>
+      <div class="fecha-grande" aria-label="Fecha de la boda">
+        <span class="lado" id="fDiaSemana"></span>
+        <span class="dia" id="fDia"></span>
+        <span class="lado" id="fMes"></span>
+      </div>
+      <span class="anio" id="fAnio"></span>
+      <div class="cuenta" id="cuenta" aria-label="Cuenta regresiva">
+        <div><b id="cDias">0</b><span>días</span></div>
+        <div><b id="cHoras">0</b><span>horas</span></div>
+        <div><b id="cMin">0</b><span>min</span></div>
+      </div>
+    </section>
+
+    <div class="separador" aria-hidden="true">✦</div>
+
+    <section aria-labelledby="tLugar">
+      <div class="centro" style="display:flex;flex-direction:column;align-items:center">
+        <span class="etiqueta">Dónde</span>
+        <h2 id="tLugar">Ceremonia y recepción</h2>
+      </div>
+      <div class="lugar" id="lugares"></div>
+      <div class="acciones">
+        <a class="btn-linea" id="linkMapa" href="#" target="_blank" rel="noopener">Ver ubicación</a>
+        <a class="btn-linea" id="linkCalendario" href="#" target="_blank" rel="noopener">Agregar al calendario</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="tItinerario">
+      <div class="centro" style="display:flex;flex-direction:column;align-items:center">
+        <span class="etiqueta">El día</span>
+        <h2 id="tItinerario">Itinerario</h2>
+      </div>
+      <ol class="itinerario" id="itinerario"></ol>
+    </section>
+
+    <section aria-labelledby="tVestimenta">
+      <div class="vestimenta">
+        <span class="etiqueta">Código de vestimenta</span>
+        <h2 id="tVestimenta" class="tipo"></h2>
+        <p class="nota-suave" id="vestDetalle"></p>
+        <div class="paleta" id="paleta" aria-label="Colores sugeridos"></div>
+        <p class="nota-suave" id="vestNota"></p>
+      </div>
+    </section>
+
+    <section class="rsvp" aria-labelledby="tRsvp">
+      <div class="centro" style="display:flex;flex-direction:column;align-items:center;gap:6px">
+        <span class="etiqueta">Confirmación</span>
+        <h2 id="tRsvp">¿Nos acompañas?</h2>
+      </div>
+      <p class="reserva" id="reserva"></p>
+      <div class="lista-invitados" id="listaInvitados"></div>
+      <label class="campo" for="mensaje">Un mensaje para los novios (opcional)
+        <textarea id="mensaje" placeholder="Ej.: ¡Allá estaremos!"></textarea>
+      </label>
+      <a class="btn-wpp" id="btnWpp" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3Z"/></svg>
+        <span>Enviar confirmación por WhatsApp</span>
+      </a>
+      <p class="resumen" id="resumen"></p>
+      <p class="contacto">Se abrirá WhatsApp con el mensaje listo; solo tienes que enviarlo. Si no abre, escríbenos al
+        <code id="numeroVisible"></code>
+        <button class="copiar" id="copiar" type="button">Copiar número</button>
+      </p>
+    </section>
+
+    <section class="cierre">
+      <p class="nota-suave">Gracias por ser parte de nuestra historia.</p>
+      <p class="firma" id="firma"></p>
+    </section>
+
+  </article>
+</main>
+
+<script>
+/* =========================================================
+   1) DATOS DE LA BODA — reemplaza estos valores
+   ========================================================= */
+const BODA = {
+  novia: "Valentina",
+  novio: "Santiago",
+  fechaISO: "2026-12-12T16:00:00-05:00",   // fecha y hora de la ceremonia (hora de Colombia)
+  finISO:   "2026-12-13T01:00:00-05:00",   // fin de la fiesta (para el calendario)
+  whatsapp: "573001234567",                // número de los novios: código de país + número, sin "+" ni espacios
+  confirmarAntes: "15 de noviembre",
+  lugares: [
+    { titulo: "Ceremonia", hora: "4:00 p. m.", nombre: "Capilla de la Hacienda El Roble", direccion: "Vía Cerritos, km 5 · Pereira, Risaralda" },
+    { titulo: "Recepción", hora: "5:30 p. m.", nombre: "Jardín principal de la Hacienda", direccion: "Mismo lugar, a pocos pasos de la capilla" }
+  ],
+  mapa: "Hacienda El Roble, Cerritos, Pereira",
+  itinerario: [
+    { hora: "3:30 p. m.", titulo: "Llegada de invitados", detalle: "Te recomendamos llegar con tiempo." },
+    { hora: "4:00 p. m.", titulo: "Ceremonia", detalle: "En la capilla de la hacienda." },
+    { hora: "5:00 p. m.", titulo: "Cóctel y fotos", detalle: "Bebidas y pasabocas en la terraza." },
+    { hora: "6:30 p. m.", titulo: "Cena", detalle: "Jardín principal." },
+    { hora: "8:00 p. m.", titulo: "Primer baile y fiesta", detalle: "A bailar hasta que el cuerpo aguante." },
+    { hora: "1:00 a. m.", titulo: "Despedida", detalle: "" }
+  ],
+  vestimenta: {
+    tipo: "Formal de jardín",
+    detalle: "Caballeros: traje (corbata opcional). Damas: vestido largo o midi. La ceremonia y la recepción son al aire libre sobre césped, así que te sugerimos tacón grueso.",
+    colores: ["#2f4a3f", "#7b8f6a", "#c9b38a", "#9a5b4a", "#3b4a64"],
+    nota: "Con cariño te pedimos reservar el color blanco para la novia."
+  }
+};
+
+/* =========================================================
+   2) INVITADOS — una entrada por invitación.
+   El enlace de cada invitado es el link de esta página + #código
+   (ej.: ...#familia-gomez). Usa solo letras, números y guiones.
+   ========================================================= */
+const INVITADOS = {
+  "familia-gomez":  { saludo: "Familia Gómez Restrepo", personas: ["Carlos Gómez", "Lucía Restrepo"] },
+  "ana-maria":      { saludo: "Ana María Ospina",        personas: ["Ana María Ospina"] },
+  "julian-y-sara":  { saludo: "Julián y Sara",           personas: ["Julián Arango", "Sara Jaramillo"] }
+};
+
+/* ========================================================= */
+const $ = id => document.getElementById(id);
+const codigo = (location.hash || "").replace(/^#/, "").toLowerCase();
+const inv = INVITADOS[codigo] || INVITADOS[Object.keys(INVITADOS)[0]];
+const fecha = new Date(BODA.fechaISO);
+const tz = "America/Bogota";
+
+function unirNombres(lista){
+  if (lista.length <= 1) return lista.join("");
+  return lista.slice(0, -1).join(", ") + " y " + lista[lista.length - 1];
+}
+
+/* Sobre */
+$("destinatario").textContent = inv.saludo;
+$("cartaNombres").textContent = BODA.novia + " & " + BODA.novio;
+$("iniciales").textContent = BODA.novia[0] + "·" + BODA.novio[0];
+
+/* Portada */
+$("novia").textContent = BODA.novia;
+$("novio").textContent = BODA.novio;
+$("firma").textContent = BODA.novia + " & " + BODA.novio;
+const fmt = o => new Intl.DateTimeFormat("es-CO", { timeZone: tz, ...o }).format(fecha);
+$("fDiaSemana").textContent = fmt({ weekday: "long" });
+$("fDia").textContent = fmt({ day: "numeric" });
+$("fMes").textContent = fmt({ month: "long" });
+$("fAnio").textContent = fmt({ year: "numeric" });
+
+function cuenta(){
+  let ms = Math.max(0, fecha - Date.now());
+  const d = Math.floor(ms / 864e5); ms -= d * 864e5;
+  const h = Math.floor(ms / 36e5);  ms -= h * 36e5;
+  const m = Math.floor(ms / 6e4);
+  $("cDias").textContent = d; $("cHoras").textContent = h; $("cMin").textContent = m;
+}
+cuenta(); setInterval(cuenta, 30000);
+
+/* Lugar */
+$("lugares").innerHTML = BODA.lugares.map(l => `
+  <div class="${BODA.lugares.length === 1 ? 'centro' : ''}">
+    <span class="hora">${l.hora}</span>
+    <h3>${l.titulo}</h3>
+    <p>${l.nombre}</p>
+    <p class="nota-suave">${l.direccion}</p>
+  </div>`).join("");
+$("linkMapa").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(BODA.mapa);
+const utc = iso => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+$("linkCalendario").href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+  + "&text=" + encodeURIComponent("Boda de " + BODA.novia + " y " + BODA.novio)
+  + "&dates=" + utc(BODA.fechaISO) + "/" + utc(BODA.finISO)
+  + "&location=" + encodeURIComponent(BODA.mapa);
+
+/* Itinerario */
+$("itinerario").innerHTML = BODA.itinerario.map(i => `
+  <li><span class="h">${i.hora}</span><span class="punto"></span>
+  <div><b>${i.titulo}</b>${i.detalle ? `<small>${i.detalle}</small>` : ""}</div></li>`).join("");
+
+/* Vestimenta */
+$("tVestimenta").textContent = BODA.vestimenta.tipo;
+$("vestDetalle").textContent = BODA.vestimenta.detalle;
+$("vestNota").textContent = BODA.vestimenta.nota;
+$("paleta").innerHTML = BODA.vestimenta.colores.map(c => `<span style="background:${c}"></span>`).join("");
+
+/* RSVP */
+const n = inv.personas.length;
+$("reserva").innerHTML = n === 1
+  ? `Hemos reservado con mucho cariño <strong>un lugar a tu nombre</strong>. Queremos vivir este día en un ambiente íntimo, por eso esta invitación es personal. Gracias por entenderlo.`
+  : `Hemos reservado con mucho cariño <strong>${n} lugares</strong> para ${unirNombres(inv.personas)}. Queremos vivir este día en un ambiente íntimo, por eso la invitación es para las personas aquí mencionadas. Gracias por entenderlo.`;
+
+const asiste = inv.personas.map(() => true);
+$("listaInvitados").innerHTML = inv.personas.map((p, i) => `
+  <div class="fila">
+    <span class="nombre">${p}</span>
+    <span class="opcion" role="group" aria-label="Asistencia de ${p}">
+      <button type="button" class="si" data-i="${i}" data-v="1" aria-pressed="true">Asistirá</button>
+      <button type="button" class="no" data-i="${i}" data-v="0" aria-pressed="false">No podrá</button>
+    </span>
+  </div>`).join("");
+$("listaInvitados").addEventListener("click", e => {
+  const b = e.target.closest("button[data-i]"); if (!b) return;
+  const i = +b.dataset.i; asiste[i] = b.dataset.v === "1";
+  b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  actualizarWpp();
+});
+$("mensaje").addEventListener("input", actualizarWpp);
+
+function actualizarWpp(){
+  const si = inv.personas.filter((_, i) => asiste[i]);
+  const no = inv.personas.filter((_, i) => !asiste[i]);
+  let txt = `¡Hola, ${BODA.novia} y ${BODA.novio}! Les escribe ${inv.saludo} para confirmar la invitación a su boda.\n\n`;
+  if (si.length) txt += `Asistirá${si.length > 1 ? "n" : ""}: ${unirNombres(si)}\n`;
+  if (no.length) txt += `No podrá${no.length > 1 ? "n" : ""} asistir: ${unirNombres(no)}\n`;
+  const nota = $("mensaje").value.trim();
+  if (nota) txt += `\nMensaje: ${nota}\n`;
+  $("btnWpp").href = "https://wa.me/" + BODA.whatsapp + "?text=" + encodeURIComponent(txt);
+  $("resumen").textContent = si.length === n ? `Confirmarás la asistencia de ${n === 1 ? "tu lugar" : "las " + n + " personas"}.`
+    : si.length === 0 ? "Avisarás que no podrán asistir. ¡Gracias por contarnos!"
+    : `Confirmarás ${si.length} de ${n} lugares.`;
+}
+actualizarWpp();
+
+const numeroBonito = "+" + BODA.whatsapp.replace(/^(\d{2})(\d{3})(\d{3})(\d+)$/, "$1 $2 $3 $4");
+$("numeroVisible").textContent = numeroBonito;
+$("copiar").addEventListener("click", () => {
+  const btn = $("copiar");
+  const ok = () => { btn.textContent = "Copiado"; setTimeout(() => btn.textContent = "Copiar número", 1800); };
+  try {
+    navigator.clipboard.writeText(numeroBonito).then(ok).catch(seleccionar);
+  } catch (e) { seleccionar(); }
+  function seleccionar(){ const r = document.createRange(); r.selectNodeContents($("numeroVisible")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+});
+
+/* Nota de fecha límite */
+const lim = document.createElement("p");
+lim.className = "resumen";
+lim.textContent = "Por favor confirma antes del " + BODA.confirmarAntes + ".";
+$("reserva").after(lim);
+
+/* Apertura del sobre */
+const reducido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+$("sello").addEventListener("click", () => {
+  const s = $("sobre"), esc = $("escena");
+  esc.classList.add("abierta");
+  const paso = reducido ? 0 : 1;
+  s.classList.add("abriendo");
+  setTimeout(() => s.classList.add("solapa-atras"), 420 * paso);
+  setTimeout(() => s.classList.add("sacando"), 800 * paso);
+  setTimeout(() => esc.classList.add("saliendo"), 2000 * paso);
+  setTimeout(() => {
+    esc.hidden = true;
+    $("invitacion").hidden = false;
+    window.scrollTo(0, 0);
+  }, 2650 * paso);
+});
+</script>
+
+</body></html>

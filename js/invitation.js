@@ -53,13 +53,14 @@ function el(tag, className, content) {
   return node;
 }
 
+// A single confirmed venue becomes the section title instead of repeating below.
+const singleVenue = WEDDING.venues.length === 1 && WEDDING.venues[0].name;
+if (singleVenue) $("whereTitle").textContent = WEDDING.venues[0].name;
+
 for (const v of WEDDING.venues) {
   const box = el("div");
-  box.append(
-    el("span", "time", text(v.time, "Hora por confirmar")),
-    el("h3", null, v.title),
-    el("p", null, text(v.name, "Lugar por confirmar")),
-  );
+  box.append(el("span", "time", text(v.time, "Hora por confirmar")), el("h3", null, v.title));
+  if (!singleVenue) box.append(el("p", null, text(v.name, "Lugar por confirmar")));
   if (v.address) box.append(el("p", "soft-note", v.address));
   $("venues").append(box);
 }
@@ -74,16 +75,6 @@ const calUrl = buildCalendarUrl({
 });
 if (calUrl) { $("calendarLink").href = calUrl; $("calendarLink").hidden = false; }
 
-/* ----- Schedule ----- */
-for (const item of WEDDING.schedule) {
-  const li = el("li");
-  const body = el("div");
-  body.append(el("b", null, item.title));
-  if (item.detail) body.append(el("small", null, item.detail));
-  li.append(el("span", item.time ? "t" : "t tbd", text(item.time, "Por definir")), el("span", "dot"), body);
-  $("schedule").append(li);
-}
-
 /* ----- Dress code ----- */
 const dress = WEDDING.dressCode;
 $("dressTitle").textContent = dress.type;
@@ -92,9 +83,11 @@ $("dressNote").textContent = dress.note;
 $("dressNote").hidden = !dress.note;
 $("palette").hidden = dress.colors.length === 0;
 for (const color of dress.colors) {
-  const dot = el("span");
-  dot.style.background = color;
-  $("palette").append(dot);
+  const swatch = el("span", "swatch");
+  swatch.style.background = color.hex;
+  const item = el("figure");
+  item.append(swatch, el("figcaption", null, color.name));
+  $("palette").append(item);
 }
 
 /* ----- RSVP ----- */
@@ -181,9 +174,25 @@ if (WEDDING.whatsapp) {
   });
 }
 
+/* ----- Background music ----- */
+// Browsers block autoplay, so it starts on the seal click (a user gesture).
+const music = $("music");
+const toggle = $("musicToggle");
+function startMusic() {
+  if (!WEDDING.music) return;
+  music.src = WEDDING.music;
+  music.play().then(() => { toggle.hidden = false; }).catch(() => {});
+}
+toggle.addEventListener("click", () => {
+  if (music.paused) music.play().catch(() => {});
+  else music.pause();
+  toggle.setAttribute("aria-pressed", String(!music.paused));
+});
+
 /* ----- Envelope opening ----- */
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1;
 $("seal").addEventListener("click", () => {
+  startMusic();
   const envelope = $("envelope");
   const scene = $("scene");
   scene.classList.add("opened");

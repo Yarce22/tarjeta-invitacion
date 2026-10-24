@@ -5,7 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#1d3b33">
   <title>Jhonnatan y Juan Jose · Invitación de boda</title>
-  <meta name="description" content="Estás invitado a la boda de Jhonnatan y Juan Jose.">
+  <meta name="description" content="Estás invitado a la boda de Jhonnatan y Juan Jose · 28 de febrero de 2027 · Finca La Gran Bélgica.">
+
+  <!-- Link preview (WhatsApp, Facebook, iMessage...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="Boda Jhonnatan y Juan Jose">
+  <meta property="og:title" content="Jhonnatan y Juan Jose · ¡Nos casamos!">
+  <meta property="og:description" content="28 de febrero de 2027 · Finca La Gran Bélgica. Abre tu invitación y confirma tu asistencia.">
+  <!-- Must be absolute URLs; WhatsApp ignores relative paths. -->
+  <meta property="og:url" content="https://yarce22.github.io/tarjeta-invitacion/">
+  <meta property="og:image" content="https://yarce22.github.io/tarjeta-invitacion/images/meta.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Las manos de los novios con sus argollas">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap">
@@ -48,6 +61,9 @@
       <section class="cover" aria-labelledby="names">
         <span class="label">Junto a nuestras familias</span>
         <h1 class="names" id="names"><span id="partnerA"></span><span class="and">y</span><span id="partnerB"></span></h1>
+        <figure class="photo">
+          <img src="images/IMG_8306.jpg.jpg" alt="Las manos de los novios con sus argollas" decoding="async">
+        </figure>
         <p class="intro">tenemos la alegría de invitarte a celebrar el día en que uniremos nuestras vidas.</p>
 
         <div class="big-date" id="bigDate" hidden aria-label="Fecha de la boda">
@@ -70,7 +86,7 @@
       <section aria-labelledby="whereTitle">
         <div class="heading">
           <span class="label">Dónde</span>
-          <h2 id="whereTitle">Ceremonia y recepción</h2>
+          <h2 id="whereTitle">El lugar</h2>
         </div>
         <div class="venues" id="venues"></div>
         <div class="actions">
@@ -79,12 +95,11 @@
         </div>
       </section>
 
-      <section aria-labelledby="scheduleTitle">
-        <div class="heading">
-          <span class="label">El día</span>
-          <h2 id="scheduleTitle">Itinerario</h2>
-        </div>
-        <ol class="schedule" id="schedule"></ol>
+      <section class="moments">
+        <blockquote class="quote">Hay momentos en la vida que son inolvidables, y compartirlos con quien más queremos los hace eternos.</blockquote>
+        <figure class="photo">
+          <img src="images/IMG_8247.jpg.jpg" alt="Jhonnatan y Juan Jose tomados de la mano en un jardín" loading="lazy" decoding="async">
+        </figure>
       </section>
 
       <section aria-labelledby="dressTitle">
@@ -126,6 +141,9 @@
 
     </article>
   </main>
+
+  <audio id="music" loop preload="none"></audio>
+  <button class="music-toggle" id="musicToggle" type="button" aria-label="Música de fondo" aria-pressed="true" hidden>♪</button>
 
   <script type="module" src="js/main.js"></script>
 </body>

@@ -6,8 +6,8 @@ export const WEDDING = {
   partnerA: "Jhonnatan",
   partnerB: "Juan Jose",
 
-  // Confirm these when ready, e.g. "2027-03-20T16:00:00-05:00" (Colombia time).
-  dateISO: null,
+  // ISO with Colombia offset, e.g. "2027-03-20T16:00:00-05:00".
+  dateISO: "2027-02-28T17:00:00-05:00",
   endISO: null,
   timeZone: "America/Bogota",
   rsvpDeadline: null, // e.g. "20 de febrero"
@@ -18,24 +18,23 @@ export const WEDDING = {
 
   // Set `name` / `address` when the venue is confirmed. `time` is free text, e.g. "4:00 p. m.".
   venues: [
-    { title: "Ceremonia", time: null, name: null, address: null },
-    { title: "Recepción", time: null, name: null, address: null },
+    { title: "Ceremonia y recepción", time: "5:00 p. m.", name: "Finca La Gran Bélgica", address: null },
   ],
-  mapQuery: null, // e.g. "Hacienda El Roble, Cerritos, Pereira"
+  mapQuery: "Finca La Gran Bélgica", // e.g. "Hacienda El Roble, Cerritos, Pereira"
 
-  // `time: null` renders as "Por definir".
-  schedule: [
-    { time: null, title: "Llegada de invitados", detail: "" },
-    { time: null, title: "Ceremonia", detail: "" },
-    { time: null, title: "Cóctel y fotos", detail: "" },
-    { time: null, title: "Cena", detail: "" },
-    { time: null, title: "Fiesta", detail: "" },
-  ],
+  // Background music, starts when the guest opens the envelope. null = no music.
+  music: "audio/marcha-imperial.mp3",
 
   dressCode: {
-    type: "Por confirmar",
-    detail: "Pronto compartiremos el código de vestimenta.",
-    colors: [], // e.g. ["#2f4a3f", "#7b8f6a", "#c9b38a"]
+    type: "Paleta de colores",
+    detail: "Te invitamos a vestir en tonos inspirados en la naturaleza: suaves, cálidos y atemporales.",
+    colors: [
+      { name: "Sage Green", hex: "#98A086" },
+      { name: "Dusty Rose", hex: "#A76D5E" },
+      { name: "Golden Tan", hex: "#C4A071" },
+      { name: "Warm Beige", hex: "#DFCCB1" },
+      { name: "Terracotta Brown", hex: "#846044" },
+    ],
     note: "",
   },
 };

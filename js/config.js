@@ -23,7 +23,7 @@ export const WEDDING = {
   mapQuery: "Finca La Gran Bélgica", // e.g. "Hacienda El Roble, Cerritos, Pereira"
 
   // Background music, starts when the guest opens the envelope. null = no music.
-  music: "audio/marcha-imperial.mp3",
+  music: "audio/para-siempre.mp3",
 
   dressCode: {
     type: "Paleta de colores",

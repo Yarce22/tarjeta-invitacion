@@ -10,7 +10,7 @@ export const WEDDING = {
   dateISO: "2027-02-28T17:00:00-05:00",
   endISO: null,
   timeZone: "America/Bogota",
-  rsvpDeadline: null, // e.g. "20 de febrero"
+  rsvpDeadline: "20 de diciembre", // shown as "Por favor confirma antes del ..."
 
   // WhatsApp of the couple: country code + number, no "+" or spaces. e.g. "573001234567".
   // Empty = WhatsApp opens and lets the guest pick the contact.

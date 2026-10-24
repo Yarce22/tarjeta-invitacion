@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#1d3b33">
+  <!-- Head tags stay static: link-preview crawlers (WhatsApp, Facebook) do not run JS.
+       Keep them in sync with js/config.js; test/html.test.js checks it. -->
   <title>Jhonnatan y Juan Jose · Invitación de boda</title>
   <meta name="description" content="Estás invitado a la boda de Jhonnatan y Juan Jose · 28 de febrero de 2027 · Finca La Gran Bélgica.">
 
@@ -29,7 +31,7 @@
   <!-- Public landing (no personal code in the URL) -->
   <main class="landing" id="landing" hidden>
     <p class="label">Boda de</p>
-    <h1 class="names"><span>Jhonnatan</span><span class="and">y</span><span>Juan Jose</span></h1>
+    <h1 class="names"><span id="landingA"></span><span class="and">y</span><span id="landingB"></span></h1>
     <span class="landing-rule" aria-hidden="true"></span>
     <a class="btn-request" id="requestButton" href="#" target="_blank" rel="noopener">Solicita tu invitación</a>
   </main>
@@ -98,7 +100,7 @@
       <section class="moments">
         <blockquote class="quote">Hay momentos en la vida que son inolvidables, y compartirlos con quien más queremos los hace eternos.</blockquote>
         <figure class="photo">
-          <img src="images/IMG_8247.jpg.jpg" alt="Jhonnatan y Juan Jose tomados de la mano en un jardín" loading="lazy" decoding="async">
+          <img src="images/IMG_8247.jpg.jpg" alt="Los novios tomados de la mano en un jardín" loading="lazy" decoding="async">
         </figure>
       </section>
 

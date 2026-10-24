@@ -7,6 +7,8 @@ if (resolveGuest(location.hash, GUESTS)) {
   await import("./invitation.js");
 } else {
   document.getElementById("landing").hidden = false;
+  document.getElementById("landingA").textContent = WEDDING.partnerA;
+  document.getElementById("landingB").textContent = WEDDING.partnerB;
   document.getElementById("requestButton").href = buildRequestUrl({
     number: WEDDING.whatsapp,
     couple: `${WEDDING.partnerA} y ${WEDDING.partnerB}`,

@@ -50,6 +50,13 @@ p { margin: 0; }
 }
 .envelope {
   position: relative; width: min(92vw, 520px); aspect-ratio: 3 / 2; perspective: 1400px; margin-top: 60px;
+  --tip: 62%;   /* flap tip and seal center, as a share of the height */
+  --seal: 74px;
+}
+/* On phones the seal would cover the name area, so it shrinks and the flap tip rises. */
+@media (max-width: 480px) {
+  .envelope { --tip: 50%; --seal: 56px; }
+  .envelope .seal { font-size: 18px; }
 }
 .envelope > * { position: absolute; }
 .envelope-back { inset: 0; background: #d9d1bf; border-radius: 6px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.55); }
@@ -67,17 +74,19 @@ p { margin: 0; }
 .pocket {
   inset: 0; z-index: 3; border-radius: 6px;
   background: linear-gradient(180deg, var(--paper-2), #e2dbcb);
-  clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-  padding: 0 8% 7%; text-align: center;
+  clip-path: polygon(0 0, 50% calc(var(--tip) - 8%), 100% 0, 100% 100%, 0 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  /* Text lives below the seal. The seal center sits at --tip of the height; vertical padding %
+     resolves against the width, and with a 3:2 ratio that is --tip * 2/3 of the width. */
+  padding: calc(var(--tip) * 2 / 3 + var(--seal) / 2 + 4px) 8% 4%; text-align: center;
 }
 .pocket .to { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: var(--ink-soft); }
 .pocket .recipient {
   font-family: var(--f-script); color: var(--ink);
-  font-size: clamp(24px, 6.2vw, 36px); line-height: 1.15; text-wrap: balance;
+  font-size: clamp(24px, 6.2vw, 36px); line-height: 1.1; text-wrap: balance;
 }
 .flap {
-  left: 0; right: 0; top: 0; height: 62%; z-index: 4;
+  left: 0; right: 0; top: 0; height: var(--tip); z-index: 4;
   background: linear-gradient(180deg, #e6dfcf, #d6cdb9);
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform-origin: top center;
@@ -85,8 +94,8 @@ p { margin: 0; }
   filter: drop-shadow(0 2px 2px rgba(0,0,0,.15));
 }
 .seal {
-  z-index: 5; left: 50%; top: 62%;
-  width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; border: 0; cursor: pointer;
+  z-index: 5; left: 50%; top: var(--tip);
+  width: var(--seal); height: var(--seal); margin: calc(var(--seal) / -2) 0 0 calc(var(--seal) / -2); border-radius: 50%; border: 0; cursor: pointer;
   background: radial-gradient(circle at 35% 30%, #a23a49, var(--wax) 55%, #5b1a25);
   box-shadow: 0 4px 10px rgba(0,0,0,.35), inset 0 0 0 5px rgba(0,0,0,.12);
   color: #f3dcc4; font-family: var(--f-display); font-style: italic; font-size: 22px; letter-spacing: .02em;

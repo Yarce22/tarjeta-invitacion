@@ -17,6 +17,25 @@ const targetMs = WEDDING.dateISO ? new Date(WEDDING.dateISO).getTime() : null;
 
 /* ----- Envelope ----- */
 $("recipient").textContent = greeting;
+
+// Long greetings shrink until they fit the space between the seal and the envelope edge.
+function fitRecipient() {
+  const name = $("recipient");
+  const pocket = name.parentElement;
+  const style = getComputedStyle(pocket);
+  const room = pocket.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+  const used = () => pocket.querySelector(".to").offsetHeight + parseFloat(style.rowGap) + name.offsetHeight;
+  name.style.fontSize = "";
+  let size = parseFloat(getComputedStyle(name).fontSize);
+  while (used() > room && size > 12) {
+    size -= 1;
+    name.style.fontSize = `${size}px`;
+  }
+}
+fitRecipient();
+document.fonts.ready.then(fitRecipient);
+addEventListener("resize", fitRecipient);
+
 $("letterNames").textContent = `${WEDDING.partnerA[0]} & ${WEDDING.partnerB[0]}`;
 $("initials").textContent = `${WEDDING.partnerA[0]}·${WEDDING.partnerB[0]}`;
 

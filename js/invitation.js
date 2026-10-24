@@ -83,6 +83,7 @@ for (const v of WEDDING.venues) {
   if (v.address) box.append(el("p", "soft-note", v.address));
   $("venues").append(box);
 }
+if (WEDDING.venueNote) $("venues").append(el("p", "soft-note", WEDDING.venueNote));
 
 const mapUrl = buildMapUrl(WEDDING.mapQuery);
 if (mapUrl) { $("mapLink").href = mapUrl; $("mapLink").hidden = false; }
@@ -202,11 +203,35 @@ function startMusic() {
   music.src = WEDDING.music;
   music.play().then(() => { toggle.hidden = false; }).catch(() => {});
 }
+let mutedByUser = false;
+let pausedByHide = false;
 toggle.addEventListener("click", () => {
   if (music.paused) music.play().catch(() => {});
   else music.pause();
+  mutedByUser = music.paused;
   toggle.setAttribute("aria-pressed", String(!music.paused));
 });
+
+// Stop playback when the guest leaves: visibilitychange covers tab/app switches,
+// pagehide covers navigation and closing (more reliable than beforeunload on mobile).
+// Only resume on return if it was this auto-stop that paused it, not a manual toggle-off.
+// visibilitychange and pagehide can both fire for the same hide, so only latch
+// pausedByHide when music was still playing — a second call must not clear it.
+function stopMusic() {
+  if (!music.paused) pausedByHide = true;
+  music.pause();
+  toggle.setAttribute("aria-pressed", "false");
+}
+function resumeMusic() {
+  if (!pausedByHide || mutedByUser) return;
+  pausedByHide = false;
+  music.play().then(() => { toggle.setAttribute("aria-pressed", "true"); }).catch(() => {});
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) stopMusic();
+  else resumeMusic();
+});
+window.addEventListener("pagehide", stopMusic);
 
 /* ----- Envelope opening ----- */
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1;

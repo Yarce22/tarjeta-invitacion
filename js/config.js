@@ -22,6 +22,9 @@ export const WEDDING = {
   ],
   mapQuery: "Finca La Gran Bélgica", // e.g. "Hacienda El Roble, Cerritos, Pereira"
 
+  // Shown right under the venue details. null = hidden.
+  venueNote: "La celebración contará con lluvia de sobres.",
+
   // Background music, starts when the guest opens the envelope. null = no music.
   music: "audio/para-siempre.mp3",
 

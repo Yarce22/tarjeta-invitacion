@@ -117,6 +117,8 @@ export const GUESTS = {
   "argenis": { people: ["Argenis"] },
   "felipe": { people: ["Felipe Tobón"] },
   "daniel": { people: ["Daniel Tobón"] },
+  "tia-chelo": { people: ["Tía Chelo"] },
+  "orley": { people: ["Orley"] },
   "tia-cris": { people: ["Tia Cris"] },
   "julian-y-yoselin": { greeting: "Julián, Yoselin y familia", people: ["Julián", "Yoselin", "Hijo/a de Julián y Yoselin"] },
 };
